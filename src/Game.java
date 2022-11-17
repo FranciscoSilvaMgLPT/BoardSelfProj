@@ -1,4 +1,5 @@
 import player.Player;
+
 import java.util.Scanner;
 
 public class Game {
@@ -57,24 +58,32 @@ public class Game {
             Player.avaiableIcons.remove(option1 - 1);
             System.out.println();
             System.out.println(blueCollor + "Player " + p1 + " has been added. Welcome and good luck!" + resetCollor);
-            TextEditor.separatorText();
         }
     }
 
 
     public static void rollDice() {
+        int winner = 0;
         System.out.println("Good luck!");
         passEnter = sc.nextLine();
         while (!win) {
             for (int i = 0; i < Player.players.size(); i++) {
                 TextEditor.separatorText();
-                System.out.println("Player " + (i + 1) + " [" + Player.players.get(i) + "] turn!");
+                System.out.println("Player " + " [" + Player.players.get(i) + "] turn!");
                 System.out.println("Press enter to roll the dice");
                 passEnter = sc.nextLine();
-                TextEditor.separatorText();
                 int dice = (int) (Math.random() * 6) + 1;
                 for (int j = 0; j < Board.aSpots.size(); j++) {
                     if (Board.aSpots.get(j).contains(Player.players.get(i).icons.icon)) {//Find player in board
+                        if (j + dice >= 47) {
+                            System.out.println(redColllor + Player.players.get(i) + " reaches the end!!" + resetCollor);
+                            Board.aSpots.get(j).set(0, "   ");
+                            Board.aSpots.get(47).set(winner, Player.players.get(i).icons.icon);
+                            Player.players.remove(i);
+                            winner++;
+                            Board.boardGame();
+                            break;
+                        }
                         if (j == 0) {                                                        //First play??
                             int posit = Board.aSpots.get(0).indexOf(Player.players.get(i).icons.icon);
                             if (Board.aSpots.get(j + dice).get(0).contains("   ")) {         //No player on spot?
@@ -86,7 +95,7 @@ public class Game {
                                 Board.aSpots.get(j).set(posit, "   ");
                                 Board.aSpots.get(j + dice).set(1, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " +redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
                                 playersFight(j + dice);
                                 Board.boardGame();
                             }
@@ -95,16 +104,17 @@ public class Game {
                                 Board.aSpots.get(j).set(0, "   ");
                                 Board.aSpots.get(j + dice).set(0, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " +redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
                             } else {
                                 Board.aSpots.get(j).set(0, "   ");
                                 Board.aSpots.get(j + dice).set(1, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " +redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
                                 playersFight(j + dice);
                                 Board.boardGame();
                             }
                         }
+
                         break;
                     }
                 }
