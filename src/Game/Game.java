@@ -116,7 +116,6 @@ public class Game {
                                 case 1:
                                     System.out.println("Mini Game: "+Collors.redCollor+"MONSTERS GAME"+Collors.resetCollor);
                                     System.out.println(MonsterMain.playMonsters(Player.players.get(i))+" TESTIIIING");
-
                                     break;
                                 case 2:
                                     System.out.println("Mini Game: "+Collors.redCollor+"MONSTERS GAME"+Collors.resetCollor);
