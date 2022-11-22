@@ -14,16 +14,15 @@ public class Player {
     public static ArrayList<Player> players = new ArrayList<>();
 
 
-
     public Player(String name, Icons icons) {
         this.name = name;
         this.icons = icons;
-        this.position=0;
+        this.position = 0;
     }
 
     @Override
     public String toString() {
-        return  name + " ("+icons.icon+")";
+        return name + " (" + icons.icon + ")";
     }
 
     public String getName() {
@@ -59,9 +58,7 @@ public class Player {
     }
 
 
-
-
-    public static void addInitialIcons(){
+    public static void addInitialIcons() {
         avaiableIcons.add(Icons.Rat);
         avaiableIcons.add(Icons.Pig);
         avaiableIcons.add(Icons.Giraffe);
@@ -75,8 +72,6 @@ public class Player {
 
 
     }
-
-
 
 
 }

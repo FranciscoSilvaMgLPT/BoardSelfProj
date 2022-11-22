@@ -1,20 +1,11 @@
+package Game;
+
+import Game.ExtraGameMonsters.MonsterMain;
 import player.Player;
 
 import java.util.Scanner;
 
 public class Game {
-
-    // COLORS
-    static String blueCollor = "\u001B[34m";
-    static String blueBCollor = "\u001B[44m";
-    static String cyanCollor = "\u001B[36m";
-    static String cyanBCollor = "\u001B[46m";
-    static String redColllor = "\u001B[31m";
-    static String redBCollor = "\u001B[41m";
-    static String resetCollor = "\u001B[0m";
-
-
-    //
 
 
     private static Scanner sc = new Scanner(System.in);
@@ -57,7 +48,7 @@ public class Game {
             Player.players.add(p1);
             Player.avaiableIcons.remove(option1 - 1);
             System.out.println();
-            System.out.println(blueCollor + "Player " + p1 + " has been added. Welcome and good luck!" + resetCollor);
+            System.out.println(Collors.blueCollor + "Player " + p1 + " has been added. Welcome and good luck!" + Collors.resetCollor);
         }
     }
 
@@ -76,7 +67,7 @@ public class Game {
                 for (int j = 0; j < Board.aSpots.size(); j++) {
                     if (Board.aSpots.get(j).contains(Player.players.get(i).icons.icon)) {//Find player in board
                         if (j + dice >= 47) {
-                            System.out.println(redColllor + Player.players.get(i) + " reaches the end!!" + resetCollor);
+                            System.out.println(Collors.redCollor + Player.players.get(i) + " reaches the end!!" + Collors.resetCollor);
                             Board.aSpots.get(j).set(0, "   ");
                             Board.aSpots.get(47).set(winner, Player.players.get(i).icons.icon);
                             Player.players.remove(i);
@@ -84,37 +75,60 @@ public class Game {
                             Board.boardGame();
                             break;
                         }
-                        if (j == 0) {                                                        //First play??
+                        if (j == 0) {                                                        //if first play
                             int posit = Board.aSpots.get(0).indexOf(Player.players.get(i).icons.icon);
                             if (Board.aSpots.get(j + dice).get(0).contains("   ")) {         //No player on spot?
                                 Board.aSpots.get(j).set(posit, "   ");
                                 Board.aSpots.get(j + dice).set(0, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + Collors.redBCollor + "Dice number:" + Collors.resetCollor + " " + dice);
                             } else {
                                 Board.aSpots.get(j).set(posit, "   ");
                                 Board.aSpots.get(j + dice).set(1, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + Collors.redBCollor + "Dice number:" + Collors.resetCollor + " " + dice);
                                 playersFight(j + dice);
                                 Board.boardGame();
                             }
-                        } else {                                                            //after first play
+                        } else {                                                            //if after first play
                             if (Board.aSpots.get(j + dice).get(0).contains("   ")) {
-                                Board.aSpots.get(j).set(0, "   ");
+                                Board.aSpots.get(j).set(0, "   ");                          //no players on spot?
                                 Board.aSpots.get(j + dice).set(0, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + Collors.redBCollor + "Dice number:" + Collors.resetCollor + " " + dice);
                             } else {
                                 Board.aSpots.get(j).set(0, "   ");
                                 Board.aSpots.get(j + dice).set(1, Player.players.get(i).icons.icon);
                                 Board.boardGame();
-                                System.out.println(Player.players.get(i) + " " + redBCollor + "Dice number:" + resetCollor + " " + dice);
+                                System.out.println(Player.players.get(i) + " " + Collors.redBCollor + "Dice number:" + Collors.resetCollor + " " + dice);
                                 playersFight(j + dice);
                                 Board.boardGame();
                             }
                         }
 
+                        //Enter "mini"Games
+                        if(Board.aSpots.get(j+dice).get(1).contains(" ⭐")){
+                            int game = (int) (Math.random() * 3) + 1;
+                            System.out.println("You entered at a mini game spot! Prepare to play!");
+                            System.out.println("Press enter to continue.");
+                            passEnter = sc.nextLine();
+                            switch (game){
+                                case 1:
+                                    System.out.println("Mini Game: "+Collors.redCollor+"MONSTERS GAME"+Collors.resetCollor);
+                                    System.out.println(MonsterMain.playMonsters(Player.players.get(i))+" TESTIIIING");
+
+                                    break;
+                                case 2:
+                                    System.out.println("Mini Game: "+Collors.redCollor+"MONSTERS GAME"+Collors.resetCollor);
+                                    System.out.println(MonsterMain.playMonsters(Player.players.get(i))+" TESTIIIING");
+                                    break;
+                                case 3:
+                                    System.out.println("Mini Game: "+Collors.redCollor+"MONSTERS GAME"+Collors.resetCollor);
+                                    System.out.println(MonsterMain.playMonsters(Player.players.get(i))+" TESTIIIING");
+                                    break;
+                            }
+
+                        }
                         break;
                     }
                 }
@@ -124,6 +138,7 @@ public class Game {
 
 
     public static void playersFight(int spotnumber) {
+        int counter = 0;
         int player0Posit = 0;
         int player1Posit = 0;
         int dice0 = 0;
@@ -136,8 +151,8 @@ public class Game {
                 player1Posit = i;
             }
         }
-        System.out.println(redBCollor + "Seems like we have two players that don't like to share in the same spot, they want to win the race and now they fight for it!");
-        System.out.println(resetCollor + "Press enter to start the fight! " + redColllor + ">>>>> " + Player.players.get(player0Posit) + " VS " + Player.players.get(player1Posit) + " <<<<<" + resetCollor);
+        System.out.println(Collors.redBCollor + "Seems like we have two players that don't like to share in the same spot, they want to win the race and now they fight for it!");
+        System.out.println(Collors.resetCollor + "Press enter to start the fight! " + Collors.redCollor + ">>>>> " + Player.players.get(player0Posit) + " VS " + Player.players.get(player1Posit) + " <<<<<" + Collors.resetCollor);
         passEnter = sc.nextLine();
         while (dice0 == dice1) {
             dice0 = (int) (Math.random() * 6) + 1;
@@ -148,6 +163,7 @@ public class Game {
                 System.out.println("Congratz! " + Player.players.get(player0Posit) + " won the fight!");
                 System.out.println("Sadly for " + Player.players.get(player1Posit) + " means he will have to back the number of houses of his dice (" + dice1 + ").");
                 Board.aSpots.get(spotnumber).set(1, "   ");
+
                 if (Board.aSpots.get(spotnumber - dice1).get(0).contains("   ")) {
                     Board.aSpots.get(spotnumber - dice1).set(0, Player.players.get(player1Posit).icons.icon);
                     Board.aSpots.get(spotnumber).set(0, Player.players.get(player0Posit).icons.icon);
@@ -161,6 +177,7 @@ public class Game {
                 System.out.println("Congratz! " + Player.players.get(player1Posit) + " won the fight!");
                 System.out.println("Sadly for " + Player.players.get(player0Posit) + " means he will have to back the number of houses of his dice (" + dice0 + ").");
                 Board.aSpots.get(spotnumber).set(1, "   ");
+
                 if (Board.aSpots.get(spotnumber - dice0).get(0).contains("   ")) {
                     Board.aSpots.get(spotnumber - dice0).set(0, Player.players.get(player0Posit).icons.icon);
                     Board.aSpots.get(spotnumber).set(0, Player.players.get(player1Posit).icons.icon);
