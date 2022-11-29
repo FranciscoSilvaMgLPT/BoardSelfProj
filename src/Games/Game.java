@@ -1,5 +1,6 @@
 package Games;
 
+import Games.ExtraGameBattleship.BattleshipMain;
 import Games.ExtraGameMonsters.MonsterMain;
 import player.Player;
 
@@ -17,6 +18,7 @@ public class Game {
 
     private static boolean win;
     private static int looser;
+    private static boolean winMiniGame;
 
 
     public static void gameStart() {
@@ -233,50 +235,59 @@ public class Game {
                     System.out.println("Mini Game: " + Collors.redCollor + "MONSTERS GAME" + Collors.resetCollor);
                     looser = MonsterMain.playMonsters(Player.players.get(i));
                     if (looser == 0) {
-                        Board.aSpots.get(j - dice).set(0, Player.players.get(i).icons.icon);
+                        if (Board.aSpots.get(j - dice).get(0).contains("   ")) {
+                            Board.aSpots.get(j - dice).set(0, Player.players.get(i).icons.icon);
+                        } else {
+                            Board.aSpots.get(j - dice).set(1, Player.players.get(i).icons.icon);
+                            playersFight(j - dice);
+                        }
                         Board.aSpots.get(j).set(0, "   ");
                         Board.boardGame();
                         System.out.println("The looser went back dice(" + dice + ") houses back.");
 
                     }
                     if (looser == 1) {
-                        Board.aSpots.get(i - dice).set(0, Board.aSpots.get(i).get(0));
+                        if (Board.aSpots.get(i - dice).get(0).contains("   ")) {
+                            Board.aSpots.get(i - dice).set(0, Board.aSpots.get(i).get(0));
+                        } else {
+                            Board.aSpots.get(i - dice).set(1, Board.aSpots.get(i).get(0));
+                            playersFight(i - dice);
+                        }
                         Board.aSpots.get(i).set(0, "   ");
                         Board.boardGame();
                         System.out.println("The looser went back dice(" + dice + ") houses back.");
                     }
                     break;
                 case 2:
-                    System.out.println("Mini Game: " + Collors.redCollor + "MONSTERS GAME" + Collors.resetCollor);
-                    looser = MonsterMain.playMonsters(Player.players.get(i));
-                    if (looser == 0) {
-                        Board.aSpots.get(j - dice).set(0, Board.aSpots.get(j).get(0));
-                        Board.aSpots.get(j).set(0, "   ");
-                        Board.boardGame();
-                        System.out.println("The looser went back dice(" + dice + ") houses back.");
-                    }
-                    if (looser == 1) {
-                        Board.aSpots.get(i - dice).set(0, Board.aSpots.get(i).get(0));
+                    System.out.println("Mini Game: " + Collors.redCollor + "BATTLE SHIP" + Collors.resetCollor);
+                    winMiniGame = BattleshipMain.playBattleship(Player.players.get(i));
+                    if (winMiniGame == true) {
+                        System.out.println("You go forward the previous dice number.(" + dice + ").");
+                        if (Board.aSpots.get(j + dice).get(0).contains("   ")) {
+                            Board.aSpots.get(j + dice).set(0, Player.players.get(i).icons.icon);
+                        } else {
+                            Board.aSpots.get(j + dice).set(1, Player.players.get(i).icons.icon);
+                            playersFight(j + dice);
+                        }
                         Board.aSpots.get(i).set(0, "   ");
                         Board.boardGame();
-                        System.out.println("The looser went back dice(" + dice + ") houses back.");
+
+                    }
+                    if (winMiniGame == false) {
+                        System.out.println("You go back the previous dice number.(" + dice + ").");
+                        if (Board.aSpots.get(j - dice).get(0).contains("   ")) {
+                            Board.aSpots.get(j - dice).set(0, Player.players.get(i).icons.icon);
+                        } else {
+                            Board.aSpots.get(j - dice).set(1, Player.players.get(i).icons.icon);
+                            playersFight(j - dice);
+                        }
+                        Board.aSpots.get(i).set(0, "   ");
+                        Board.boardGame();
+
                     }
                     break;
                 case 3:
-                    System.out.println("Mini Game: " + Collors.redCollor + "MONSTERS GAME" + Collors.resetCollor);
-                    looser = MonsterMain.playMonsters(Player.players.get(i));
-                    if (looser == 0) {
-                        Board.aSpots.get(j - dice).set(0, Board.aSpots.get(j).get(0));
-                        Board.aSpots.get(j).set(0, "   ");
-                        Board.boardGame();
-                        System.out.println("The looser went back dice(" + dice + ") houses back.");
-                    }
-                    if (looser == 1) {
-                        Board.aSpots.get(i - dice).set(0, Board.aSpots.get(i).get(0));
-                        Board.aSpots.get(i).set(0, "   ");
-                        Board.boardGame();
-                        System.out.println("The looser went back dice(" + dice + ") houses back.");
-                    }
+                    System.out.println("Lucky you! This game is still under construction! See this as a free chance! Good luck.");
                     break;
             }
 

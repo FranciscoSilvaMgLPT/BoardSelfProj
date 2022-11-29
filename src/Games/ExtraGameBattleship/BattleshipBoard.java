@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public abstract class BattleshipBoard {
 
+
     static ArrayList<ArrayList<String>> seaBoard = new ArrayList<>();
     static ArrayList<ArrayList<String>> enemyBoard = new ArrayList<>();
 

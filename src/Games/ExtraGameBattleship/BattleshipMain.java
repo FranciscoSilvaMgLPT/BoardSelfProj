@@ -1,9 +1,11 @@
 package Games.ExtraGameBattleship;
 
+import Games.Collors;
 import Games.TextEditor;
 import player.Icons;
 import player.Player;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Games.ExtraGameBattleship.BattleshipBoard.*;
@@ -18,10 +20,21 @@ public class BattleshipMain {
 
     static int option;
     static int positionX;
-    static int positionX1;
+    static int numX;
     static String headDirection;
     static int positionY;
-    static int positionY1;
+    static int numY;
+
+    static ArrayList<Boat> teamBoat = new ArrayList<>();
+    static ArrayList<Boat> teamEnemyBoat = new ArrayList<>();
+    static Boat2 boat2 = new Boat2();
+    static Boat2 boat2Enemy = new Boat2();
+    static Boat3 boat3 = new Boat3();
+    static Boat3 boat3Enemy = new Boat3();
+    static Boat4 boat4 = new Boat4();
+    static Boat4 boat4Enemy = new Boat4();
+    static boolean win = false;
+    static boolean playerWin;
 
     public static void main(String[] args) {
 
@@ -30,7 +43,15 @@ public class BattleshipMain {
 
     }
 
-    public static void playBattleship(Player player) {
+    public static boolean playBattleship(Player player) {
+        teamBoat.add(boat2);
+        teamBoat.add(boat3);
+        teamBoat.add(boat4);
+
+        teamEnemyBoat.add(boat2Enemy);
+        teamEnemyBoat.add(boat3Enemy);
+        teamEnemyBoat.add(boat4Enemy);
+
         TextEditor.battleshipIntro();
         setSeaBoard();
         BattleshipBoard.seeSeaBoard();
@@ -38,6 +59,8 @@ public class BattleshipMain {
         placePlayerBoats();
         placeBotBoats();
         startPlay();
+
+        return playerWin;
 
     }
 
@@ -54,6 +77,7 @@ public class BattleshipMain {
 
 
     public static void placePlayerBoats() {
+
         System.out.println();
         System.out.println("Place your boats.");
         for (int i = 0; i < 3; i++) {
@@ -244,11 +268,11 @@ public class BattleshipMain {
     }
 
     public static void startPlay() {
-        boolean win = false;
-        boolean hit = false;
         System.out.println("Lets play! Good luck!");
+        boolean botShot;
         while (!win) {
             for (int i = 0; i < 2; i++) {
+                botShot = false;
                 switch (i) {
                     case 0:        //Player turn
                         System.out.println("Place coordinates to order the attack! [first X, then Y]");
@@ -261,22 +285,25 @@ public class BattleshipMain {
                             System.out.println("Water!💦");
                         }
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat2.icon)) {
-                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, Boat2.iconFire);
+                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            Boat2.life--;
+                            teamEnemyBoat.get(teamBoat.indexOf(boat2Enemy)).life--;
+
                         }
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat3.icon)) {
-                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, Boat3.iconFire);
+                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            Boat3.life--;
+                            teamEnemyBoat.get(teamBoat.indexOf(boat3Enemy)).life--;
+
                         }
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat4.icon)) {
-                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, Boat4.iconFire);
+                            BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            Boat4.life--;
+                            teamEnemyBoat.get(teamBoat.indexOf(boat4Enemy)).life--;
+
                         }
                         seeSeaBoard();
-                        if (Boat2.life == 0) {
+                        if (teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life == 0) {
                             for (int j = 0; j < enemyBoardHidden.size(); j++) {
                                 for (int k = 0; k < 10; k++) {
                                     if (enemyBoardHidden.get(j).get(k).contains(Boat2.icon)) {
@@ -284,11 +311,11 @@ public class BattleshipMain {
                                     }
                                 }
                             }
-                            Boat2.life=-1;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life = -1;
                             System.out.println("Enemy " + Boat2.icon.repeat(2) + " has been shot down!");
                             seeSeaBoard();
                         }
-                        if (Boat3.life == 0) {
+                        if (teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life == 0) {
                             for (int j = 0; j < enemyBoardHidden.size(); j++) {
                                 for (int k = 0; k < 10; k++) {
                                     if (enemyBoardHidden.get(j).get(k).contains(Boat3.icon)) {
@@ -296,11 +323,11 @@ public class BattleshipMain {
                                     }
                                 }
                             }
-                            Boat3.life=-1;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life = -1;
                             System.out.println("Enemy " + Boat3.icon.repeat(3) + " has been shot down!");
                             seeSeaBoard();
                         }
-                        if (Boat4.life == 0) {
+                        if (teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life == 0) {
                             for (int j = 0; j < enemyBoardHidden.size(); j++) {
                                 for (int k = 0; k < 10; k++) {
                                     if (enemyBoardHidden.get(j).get(k).contains(Boat4.icon)) {
@@ -308,17 +335,99 @@ public class BattleshipMain {
                                     }
                                 }
                             }
-                            Boat4.life=-1;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life = -1;
                             System.out.println("Enemy " + Boat4.icon.repeat(4) + " has been shot down!");
                             seeSeaBoard();
                         }
+                        if (teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life + teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life + teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life == -3) {
+                            win = true;
+                            playerWin = true;
+                            i = 3;
+                            System.out.println("YOU WIN!!!");
+                        }
+                        break;
                     case 1:     //Bot turn
+                        System.out.println(Collors.redCollor + "Enemies are firing up! Watch out!" + Collors.resetCollor);
+                        while (botShot == false) {
+                            numX = (int) (Math.random() * 9);
+                            numY = (int) (Math.random() * 9);
 
+                            if (seaBoard.get(numX).get(numY) == water || seaBoard.get(numX).get(numY) == fire || seaBoard.get(numX).get(numY) == killed) {
+
+                            } else {
+                                botShot = true;
+                                if (seaBoard.get(numX).get(numY) == "   ") {
+                                    seaBoard.get(numX).set(numY, water);
+                                    System.out.println("The enemy has shot your sea but missed your ships." + water + "[" + numX + "," + numY + "]");
+                                }
+                                if (seaBoard.get(numX).get(numY) == Boat2.icon) {
+                                    seaBoard.get(numX).set(numY, fire);
+                                    System.out.println("The enemy has shot your " + Boat2.icon.repeat(2) + "." + "[" + numX + "," + numY + "]");
+                                    teamBoat.get(teamBoat.indexOf(boat2)).life--;
+                                }
+                                if (seaBoard.get(numX).get(numY) == Boat3.icon) {
+                                    seaBoard.get(numX).set(numY, fire);
+                                    System.out.println("The enemy has shot your " + Boat3.icon.repeat(3) + "." + "[" + numX + "," + numY + "]");
+                                    teamBoat.get(teamBoat.indexOf(boat3)).life--;
+                                }
+                                if (seaBoard.get(numX).get(numY) == Boat4.icon) {
+                                    seaBoard.get(numX).set(numY, fire);
+                                    System.out.println("The enemy has shot your " + Boat4.icon.repeat(4) + "." + "[" + numX + "," + numY + "]");
+                                    teamBoat.get(teamBoat.indexOf(boat4)).life--;
+                                }
+                            }
+                            System.out.println();
+
+                            if (teamBoat.get(teamBoat.indexOf(boat2)).life == 0) {
+                                for (int j = 0; j < seaBoard.size(); j++) {
+                                    for (int k = 0; k < 10; k++) {
+                                        if (seaBoard.get(j).get(k).contains(Boat2.icon)) {
+                                            seaBoard.get(j).set(k, killed);
+                                        }
+                                    }
+                                }
+                                teamBoat.get(teamBoat.indexOf(boat2)).life = -1;
+                                System.out.println("Enemy " + Boat2.icon.repeat(2) + " has been shot down!");
+                                seeSeaBoard();
+                            }
+                            if (teamBoat.get(teamBoat.indexOf(boat3)).life == 0) {
+                                for (int j = 0; j < seaBoard.size(); j++) {
+                                    for (int k = 0; k < 10; k++) {
+                                        if (seaBoard.get(j).get(k).contains(Boat3.icon)) {
+                                            seaBoard.get(j).set(k, killed);
+                                        }
+                                    }
+                                }
+                                teamBoat.get(teamBoat.indexOf(boat3)).life = -1;
+                                System.out.println("Enemy " + Boat3.icon.repeat(3) + " has been shot down!");
+                                seeSeaBoard();
+                            }
+                            if (teamBoat.get(teamBoat.indexOf(boat4)).life == 0) {
+                                for (int j = 0; j < seaBoard.size(); j++) {
+                                    for (int k = 0; k < 10; k++) {
+                                        if (seaBoard.get(j).get(k).contains(Boat4.icon)) {
+                                            seaBoard.get(j).set(k, killed);
+                                        }
+                                    }
+                                }
+                                teamBoat.get(teamBoat.indexOf(boat4)).life = -1;
+                                System.out.println("Enemy " + Boat4.icon.repeat(4) + " has been shot down!");
+                                seeSeaBoard();
+                            }
+                            if (teamBoat.get(teamBoat.indexOf(boat2)).life + teamBoat.get(teamBoat.indexOf(boat3)).life + teamBoat.get(teamBoat.indexOf(boat4)).life == -3) {
+                                win = true;
+                                playerWin = false;
+                                i = 3;
+                                System.out.println("YOU LOOSE! THE ENEMY SUNK ALL YOUR SHIPS!!");
+                            }
+
+                        }
                 }
+
             }
         }
-
     }
 }
+
 
 
