@@ -1,14 +1,14 @@
-package Game.ExtraGameMonsters;
+package Games.ExtraGameMonsters;
 
-import Game.Collors;
+import Games.Collors;
 import player.Icons;
 import player.Player;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static Game.TextEditor.MonstersIntroText;
-import static Game.TextEditor.separatorText;
+import static Games.TextEditor.MonstersIntroText;
+import static Games.TextEditor.separatorText;
 
 public class MonsterMain {
     static ArrayList<Player> monsterPlayers = new ArrayList<>();
@@ -24,7 +24,8 @@ public class MonsterMain {
     static int numberOfMonsters = 0;
 
     static Scanner sc = new Scanner(System.in);
-    static Player winner;
+    static int winner;
+    static int looser;
 
 
     public static void main(String[] args) {
@@ -39,7 +40,7 @@ public class MonsterMain {
         playMonsters(ze);
     }
 
-    public static Player playMonsters(Player player0) {
+    public static int playMonsters(Player player0) {
         String passEnter1 = " ";
         monsters.add(werewolf);
         monsters.add(vampire);
@@ -141,7 +142,7 @@ public class MonsterMain {
         passEnter1 = sc.next();
 
         startMonsters(player0, player1);
-        return winner;
+        return looser;
     }
 
     public static void startMonsters(Player player0, Player player1) {
@@ -165,7 +166,8 @@ public class MonsterMain {
                     if (monstersTeam1.size() == 0) {
                         win = true;
                         System.out.println(player0 + " wins!");
-                        winner = player0;
+                        winner = 0;
+                        looser = 1;
                         break;
                     }
                 }
@@ -185,7 +187,8 @@ public class MonsterMain {
                     if (monstersTeam0.size() == 0) {
                         win = true;
                         System.out.println(player1 + " wins!");
-                        winner = player1;
+                        winner = 1;
+                        looser = 0;
                         break;
                     }
                 }

@@ -1,4 +1,4 @@
-package Game;
+package Games;
 public abstract class TextEditor {
 
 
@@ -44,6 +44,18 @@ public abstract class TextEditor {
         System.out.println();
         System.out.println();
 
+    }
+
+    public static void battleshipIntro(){
+        System.out.println();
+        System.out.println();
+        System.out.println("\n" +
+                "                                      "+Collors.blueCollor+"██████╗░░█████╗░████████╗████████╗██╗░░░░░███████╗░██████╗██╗░░██╗██╗██████╗░    "+Collors.redCollor+" ░██╗░░░░░░░██╗░█████╗░██████╗░░██████╗\n" +
+                "                                      "+Collors.blueCollor+"██████╦╝███████║░░░██║░░░░░░██║░░░██║░░░░░█████╗░░╚█████╗░███████║██║██████╔╝    "+Collors.redCollor+" ░╚██╗████╗██╔╝███████║██████╔╝╚█████╗░\n" +
+                "                                      "+Collors.blueCollor+"██╔══██╗██╔══██║░░░██║░░░░░░██║░░░██║░░░░░██╔══╝░░░╚═══██╗██╔══██║██║██╔═══╝░    "+Collors.redCollor+" ░░████╔═████║░██╔══██║██╔══██╗░╚═══██╗\n" +
+                "                                      "+Collors.blueCollor+"██████╦╝██║░░██║░░░██║░░░░░░██║░░░███████╗███████╗██████╔╝██║░░██║██║██║░░░░░    "+Collors.redCollor+" ░░╚██╔╝░╚██╔╝░██║░░██║██║░░██║██████╔╝\n" +
+                "                                      "+Collors.blueCollor+"╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░    "+Collors.redCollor+" ░░░╚═╝░░░╚═╝░░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░"+Collors.resetCollor);
+        System.out.println();
     }
 
 

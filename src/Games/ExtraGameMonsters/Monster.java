@@ -1,8 +1,6 @@
-package Game.ExtraGameMonsters;
+package Games.ExtraGameMonsters;
 
-import Game.Collors;
-
-import java.util.ArrayList;
+import Games.Collors;
 
 public abstract class Monster {
 

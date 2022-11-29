@@ -1,6 +1,6 @@
-package Game.ExtraGameMonsters;
+package Games.ExtraGameMonsters;
 
-import Game.Collors;
+import Games.Collors;
 
 public class Vampire extends Monster {
     int bite = 5;

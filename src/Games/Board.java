@@ -1,4 +1,4 @@
-package Game;
+package Games;
 
 import player.Player;
 import java.util.ArrayList;
@@ -18,12 +18,6 @@ public abstract class Board {
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
-        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
@@ -33,6 +27,12 @@ public abstract class Board {
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐️")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐️")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐️")));
+        aSpots.add(new ArrayList<String>(Arrays.asList("   ", " ⭐️")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));
         aSpots.add(new ArrayList<String>(Arrays.asList("   ", "   ")));

@@ -1,4 +1,4 @@
-package Game.ExtraGameMonsters;
+package Games.ExtraGameMonsters;
 
 public class Mummy extends Monster {
 
