@@ -287,19 +287,19 @@ public class BattleshipMain {
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat2.icon)) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            teamEnemyBoat.get(teamBoat.indexOf(boat2Enemy)).life--;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life--;
 
                         }
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat3.icon)) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            teamEnemyBoat.get(teamBoat.indexOf(boat3Enemy)).life--;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life--;
 
                         }
                         if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat4.icon)) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
-                            teamEnemyBoat.get(teamBoat.indexOf(boat4Enemy)).life--;
+                            teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life--;
 
                         }
                         seeSeaBoard();
