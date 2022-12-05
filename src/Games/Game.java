@@ -237,11 +237,12 @@ public class Game {
                     if (looser == 0) {
                         if (Board.aSpots.get(j - dice).get(0).contains("   ")) {
                             Board.aSpots.get(j - dice).set(0, Player.players.get(i).icons.icon);
+                            Board.aSpots.get(j).set(0,"   ");
                         } else {
                             Board.aSpots.get(j - dice).set(1, Player.players.get(i).icons.icon);
+                            Board.aSpots.get(j).set(0,"   ");
                             playersFight(j - dice);
                         }
-                        Board.aSpots.get(j).set(0, "   ");
                         Board.boardGame();
                         System.out.println("The looser went back dice(" + dice + ") houses back.");
 
