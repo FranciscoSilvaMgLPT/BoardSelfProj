@@ -27,12 +27,12 @@ public class BattleshipMain {
 
     static ArrayList<Boat> teamBoat = new ArrayList<>();
     static ArrayList<Boat> teamEnemyBoat = new ArrayList<>();
-    static Boat2 boat2 = new Boat2();
-    static Boat2 boat2Enemy = new Boat2();
-    static Boat3 boat3 = new Boat3();
-    static Boat3 boat3Enemy = new Boat3();
-    static Boat4 boat4 = new Boat4();
-    static Boat4 boat4Enemy = new Boat4();
+    static Boat boat2 = new Boat2();
+    static Boat boat2Enemy = new Boat2();
+    static Boat boat3 = new Boat3();
+    static Boat boat3Enemy = new Boat3();
+    static Boat boat4 = new Boat4();
+    static Boat boat4Enemy = new Boat4();
     static boolean win = false;
     static boolean playerWin;
 
