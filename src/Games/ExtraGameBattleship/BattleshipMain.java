@@ -284,19 +284,19 @@ public class BattleshipMain {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, water);
                             System.out.println("Water!💦");
                         }
-                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat2.icon)) {
+                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat2.icon) && teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life > 0) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
                             teamEnemyBoat.get(teamEnemyBoat.indexOf(boat2Enemy)).life--;
 
                         }
-                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat3.icon)) {
+                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat3.icon) && teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life > 0) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
                             teamEnemyBoat.get(teamEnemyBoat.indexOf(boat3Enemy)).life--;
 
                         }
-                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat4.icon)) {
+                        if (BattleshipBoard.enemyBoardHidden.get(positionX).get(positionY).contains(Boat4.icon) && teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life > 0) {
                             BattleshipBoard.enemyBoard.get(positionX).set(positionY, fire);
                             System.out.println("Fire!🔥 A ship  has been hit!!💥💥");
                             teamEnemyBoat.get(teamEnemyBoat.indexOf(boat4Enemy)).life--;
@@ -360,17 +360,17 @@ public class BattleshipMain {
                                     seaBoard.get(numX).set(numY, water);
                                     System.out.println("The enemy has shot your sea but missed your ships." + water + "[" + numX + "," + numY + "]");
                                 }
-                                if (seaBoard.get(numX).get(numY) == Boat2.icon) {
+                                if (seaBoard.get(numX).get(numY) == Boat2.icon && teamBoat.get(teamBoat.indexOf(boat2)).life > 0) {
                                     seaBoard.get(numX).set(numY, fire);
                                     System.out.println("The enemy has shot your " + Boat2.icon.repeat(2) + "." + "[" + numX + "," + numY + "]");
                                     teamBoat.get(teamBoat.indexOf(boat2)).life--;
                                 }
-                                if (seaBoard.get(numX).get(numY) == Boat3.icon) {
+                                if (seaBoard.get(numX).get(numY) == Boat3.icon && teamBoat.get(teamBoat.indexOf(boat3)).life > 0) {
                                     seaBoard.get(numX).set(numY, fire);
                                     System.out.println("The enemy has shot your " + Boat3.icon.repeat(3) + "." + "[" + numX + "," + numY + "]");
                                     teamBoat.get(teamBoat.indexOf(boat3)).life--;
                                 }
-                                if (seaBoard.get(numX).get(numY) == Boat4.icon) {
+                                if (seaBoard.get(numX).get(numY) == Boat4.icon && teamBoat.get(teamBoat.indexOf(boat4)).life > 0) {
                                     seaBoard.get(numX).set(numY, fire);
                                     System.out.println("The enemy has shot your " + Boat4.icon.repeat(4) + "." + "[" + numX + "," + numY + "]");
                                     teamBoat.get(teamBoat.indexOf(boat4)).life--;
